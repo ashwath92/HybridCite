@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+._dash-undo-redo {
+  display: none;
+}
+
+#numrecommendations {
+width: '50%';
+}
+
+body{
+  height:100%;
+  background-image: url("/assets/trianglifyPuBuGn.png");
+  background-size: cover;
+
+}

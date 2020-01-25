@@ -1,0 +1,376 @@
+IMPORTANT: run bm25 on acl in h2dv
+CHECK MAP AND MRR!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+MRR: FOR 1 RELEVANT ITEM. IN MAG, WE HAVE JUST THAT.
+PRECISION = RR, AVG SAME
+IN THIS CASE, ALL METRICS ARE 0 TILL THE GROUND TRUTH IS REACHED.
+
+ARXIV: IM REMOVING ALL NULL BM25 RECOMMENDATIONS, REMOVING THE ENTIRE ROWS. 2699 removed
+run metrics again!!!!!!!!!!!!!!!!!!////!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+MAG ground truths number, I didn't do this for MAG50
+153953, 10183, 2858, 994, 397, 148, 89, 36, 11, 8, 5,5,4,3,2,2,1,1
+Percentage of whole:
+[91.25844694724363, 6.036158861885003, 1.6941315945465323, 0.5892116182572614, 0.23532898636633076, 0.0877296976882039, 0.05275637225844695, 0.02133965619442798, 0.006520450503852994, 0.004742145820983995, 0.002963841138114997, 0.002963841138114997, 0.0023710729104919974, 0.0017783046828689982, 0.0011855364552459987, 0.0011855364552459987, 0.0005927682276229994, 0.0005927682276229994]
+
+1     153953
+2      10183
+3       2858
+4        994
+5        397
+6        148
+7         89
+8         36
+9         11
+10         8
+11         5
+12         5
+13         4
+16         3
+15         2
+18         2
+17         1
+14         1
+
+Arxiv:
+[256037, 64281, 28651, 13476, 6897, 3961, 2038, 1172, 1021, 678, 247, 117,74,59,40,38,35,25,19,17,17,17]
+Percentages:
+[67.57073448802772, 16.96440117492749, 7.56128650865493, 3.556451676752429, 1.8201875344732488, 1.0453476618890152, 0.5378486581494101, 0.3093025649416627, 0.26945214915139726, 0.17893100599867517, 0.06518577947149376, 0.030877474486497043, 0.019529342837613515, 0.015570692262421585, 0.010556401533845143, 0.010028581457152885, 0.0092368513421145, 0.006597750958653214, 0.0050142907285764425, 0.004486470651884186, 0.004486470651884186, 0.004486470651884186]
+
+
+1     256037
+2      64281
+3      28651
+4      13476
+5       6897
+6       3961
+7       2038
+8       1172
+9       1021
+10       678
+11       247
+12       117
+14        74
+13        59
+16        40
+15        38
+19        35
+25        25
+20        19
+17        17
+21        17
+27        17
+
+ACL:
+
+
+TRAINING VS TEST SET LINE GRAPH 
+
+SOFTMAX formula
+
+
+x=df.groupby(['context', 'citing_mag_id'])['ground_truth'].apply(list).to_frame('total').reset_index()
+y = df.groupby(['citing_acl_id','context']).agg({'ground_truth': list, 'context': lambda c:c}).
+
+
+
+h2dv: MAG grouped predictions going on
+fulltext:  arxiv combine: DONE  50 50 done: TO DO : calculate metrics again
+endh2: unpaywall bm25, to do: hd2v x 2, 
+
+hd2v single vector: arxiv (done), acl (done), mag (done), unpaywall (done)
+hd2v double vector: arxiv (done), acl (done), mag (done), unpaywall (done)
+p2v: arxiv (done), acl (done), mag (done), unpaywall (done)
+d2v: arxiv (done), acl (done), mag (done), unpaywall (done)
+p2v cited: mag (done): no recommmendations pickle though :( !
+d2v cited: mag (done)
+bm25: arxiv (done), acl (done), mag (done), unpaywall (done)
+combined model predictions: arxiv (not done), mag (not done), acl (not done), unpaywall (not done)
+lda: mag (done), acl (done), arxiv (done), unpaywall (in prog)
+ldamallet: only acl
+
+STATS Training and Test:
+
+TEST:
+All except p2v
+
+ACL: 2775 contexts
+Training set: 11217 papers (9166 from ACL)
+Recommendations pickle: recommendations_aclmag_bm25_hd2v_both_models_500_df.pickle
+Index(['ground_truth', 'citing_acl_id', 'context', 'wordcount',
+       'hd2v_recommendations_wv0dv1', 'bm25_recommendations', 'bm25_binary',
+       'hd2v_wv0dv1_binary', 'hd2v_recommendations_both_wv0dv1_wv1dv0',
+       'hd2v_both_wv0dv1_wv1dv0_binary'],
+      dtype='object')
+
+Recall@500
+Ldamallet: 0.783063063, bm25: 0.545945946, hd2v1vec: 0.552432432
+
+
+Arxiv: 376218 contexts
+Training set: 286272 (53614 from arxiv)
+AFTER REMOVING NULL BM25 RECOMMENDATIONS.
+Recommendations pickle: /home/ashwath/Programs/ArxivCS/Pickles/recommendations_arxivmag_may21_500_df.pickle
+Index(['ground_truth', 'citing_arxiv_id', 'context', 'context_for_lda',
+       'wordcount', 'hd2v_recommendations', 'bm25_recommendations',
+       'lda_recommendations', 'hd2v_binary', 'lda_binary', 'bm25_binary',
+       'hd2v_recommendations_wv0dv1', 'hd2v_wv0dv1_binary'],
+      dtype='object')
+Recall@500: bm25: 0.45, hd2v1vec:0.42
+
+
+MAG-Own contexts: 168700 contexts
+training set: 1620841
+
+Now: only 168700 contexts
+Recommendations pickle: /home/ashwath/Programs/MAGCS/Pickles/recommendations_mag_bothhd2v_bm25_500_hybrid_owncontexts_df 
+
+Index(['ground_truth', 'citing_acl_id', 'context', 'context_for_lda',
+       'wordcount', 'hd2v_recommendations', 'bm25_recommendations',
+       'hd2v_binary', 'bm25_binary', 'hd2v_recommendations_wv0dv1',
+       'hd2v_wv0dv1_binary'],
+      dtype='object')
+Recall@500: bm25: 0.55, hd2v1vec: 0.53
+
+    
+Unpaywall:  contexts
+Now: only 182327 contexts after word count 8
+1185090 in training set
+Recommendations pickle: df.to_pickle('/home/ashwath/Programs/UnpaywallMAG/Pickles/recommendations_unpaywallmag_500_df_bm25_hd2vboth_hybrid_june3.pickle')
+Index(['ground_truth', 'citing_mag_id', 'context', 'wordcount',
+       'hd2v_recommendations_wv0dv1_wv1dv0', 'hd2v_recommendations_wv0dv1',
+       'hd2v_wv0dv1_binary', 'hd2v_wv0dv1_wv1dv0_binary',
+       'bm25_recommendations', 'bm25_binary'],
+
+Recall@500: bm25: 0.24, hd2v1vec: 0.29
+
+df['hd2v_recommendations'] = df['context'].progress_apply(hd2v_recommend)
+
+df['hd2v_recommendations_wv0dv1'] = df['context'].progress_apply(hd2v_wvindvout_recommend)
+df.to_pickle('/home/ashwath/Programs/MAGCS/Pickles/recommendations_NEWGROUPED_mag_bothhd2v.pickle'))
+df['bm25_recommendations'] = df['context'].progress_apply(solr_recommend)
+
+
+
+MAG50: 1429 contexts 
+NOW: 107781 contexts
+Training set: 126666 papers
+df['hd2v_recommendations'] = df['context'].progress_apply(hd2v_recommend)
+df['lda_recommendations'] = df['context_for_lda'].progress_apply(lda_recommend)
+
+
+df['bm25_recommendations'] = df['context'].progress_apply(solr_recommend)
+df['hd2v_recommendations_wv0dv1'] = df['context'].progress_apply(hd2v_wvindvout_recommend)
+
+Reommendations pickle: /home/ashwath/Programs/MAGCS/Pickles/recommendations_mag50_4models_500_df.pickle
+Index(['ground_truth', 'citing_acl_id', 'context', 'context_for_lda',
+       'wordcount', 'hd2v_recommendations', 'bm25_recommendations',
+       'lda_recommendations', 'hd2v_binary', 'lda_binary', 'bm25_binary',
+       'hd2v_recommendations_wv0dv1', 'hd2v_wv0dv1_binary'],
+      dtype='object')
+Recall@500: bm25: 0.50, hd2v1vec: 0.53
+
+
+MAG-Cited contexts: No hd2v and bm25 yet. 191146 contexts
+
+Paper2Vec:
+
+At this stage, it is important to note that this production of pseudo full-text can be done for arbitrarily many iterations. We can get the pseudo full text of the papers which are cited by papers in the full text data set (say, Arxiv) from the MAG, get the pseudo full text of the papers cited by the papers in the set of pseudo full-text papers, and so on. A design decision is therefore made to only include those citation contexts which cite papers which are within the set of papers seen so far. Only one iteration to add pseudo full-text is carried out.
+
+now for bm25: 1629106 papers
+
+MAG Cited : 190991 contexts
+1478924 in training set
+latest:
+1605574 in training set
+Index(['ground_truth', 'citing_mag_id', 'context', 'wordcount',
+       'd2v_recommendations', 'd2v_binary', 'p2v_recommendations',
+       'p2v_binary'],
+      dtype='object')
+
+from collections import defaultdict
+from numpy.random import choice
+import numpy as np
+import random
+from copy import deepcopy
+from collections import Counter
+
+# List of reciproacal ranks: 1000 entries for combinations of entries in both recommendations lists.
+#create list with  rr: rrlist/weights = [1/(i+1) for i in range(500)].extend([1/(i+1) for i in range(500)])
+weights = [1/(i+1) for i in range(500)]
+weights.extend(weights)
+weights = np.array(weights)
+# convert weights to be a probability distribution: 
+https://stackoverflow.com/questions/46160717/two-methods-to-normalise-array-to-sum-total-to-1-0
+# 2 ways
+weights = weights/weights.sum()
+OR Scale down so the minimum value is 1 first
+x = weights/weights.min()
+weights = x/x.sum()
+# Or using sklearn:
+https://stackoverflow.com/questions/21030391/how-to-normalize-an-array-in-numpy
+
+multi set = 
+# combined recommendations
+#lists: hd2v_recommendations, bm25_recommendations
+combined_recommendations = deepcopy(hd2v_recommendations)
+combined_recommendations.extend(bm25_recommendations)
+
+# choose number of items to pick to be a very high number: picking with replacement.
+20000? 250000? 250000/10000 = 50. we will get frequencies 
+number_of_items_to_pick = high number
+num_pick = 250000
+https://stackoverflow.com/questions/3679694/a-weighted-version-of-random-choice
+https://docs.scipy.org/doc/numpy/reference/generated/numpy.random.choice.html
+https://stackoverflow.com/questions/10803135/weighted-choice-short-and-simple
+draw = choice(combined_recommendations, num_picks, p=weights)
+OR
+draw = random.choices(combined_recommendations, weights)
+
+FINAL CODE:
+import numpy as np
+from numpy.random import choice
+from copy import deepcopy
+from collections import Counter
+
+# GLOBAL calculation for weights (same for all recommendations) 
+# Weights: reciproacal ranks of the 500 items in each list (hd2v and bm25)
+hybrid_weights = [1/(i+1) for i in range(500)]
+hybrid_weights.extend(hybrid_weights)
+hybrid_weights = np.array(hybrid_weights)
+# Convert to probabilities
+hybrid_weights = hybrid_weights/hybrid_weights.sum()
+# GLOBAL num_items_to_pick (with replacement) -- high number: half a million
+num_picks = 1000000
+
+def hybrid_recommend(hd2v_recommendations_wv0dv1, bm25_recommendations):
+    """ Treat them as equal (50:50 importance) Semi-genetic algorithm"""
+    combined_recommendations = deepcopy(hd2v_recommendations_wv0dv1)
+    weights = [1/(i+1) for i in range(500)]
+    weights.extend(weights)
+    weights = np.array(weights)
+    combined_recommendations.extend(bm25_recommendations)
+    combined_recommendations = np.array(combined_recommendations)
+    draw = choice(combined_recommendations, num_picks, p=hybrid_weights)
+    # Now, we have drawn 500000 times with replacement, we expect the recommended
+    # ids with high probabilities to be drawn more. Recommendations in both the
+    # recommendation lists (with 2 separate probabilities) will be drawn even more.
+    # Create a Counter with number of times each recommended id is drawn.
+    draw_frequencies = Counter(draw)
+    rankedlist = [paperid for paperid, draw_count in draw_frequencies.most_common(500)]
+    return rankedlist 
+
+hybrid_models_cols = ['hd2v_recommendations_wv0dv1', 'bm25_recommendations']
+df['hybrid_recommendations'] = df[hybrid_models_cols].progress_apply(
+       lambda x: hybrid_recommend(x.hd2v_recommendations_wv0dv1, x.bm25_recommendations), axis=1)
+
+df['hybrid_binary'] = df[['ground_truth', 'hybrid_recommendations']].apply(
+        lambda x: binarize_predictions(x.ground_truth, x.hybrid_recommendations), axis=1)
+
+
+def calculate_hybrid_metrics(df):
+    """ Calculates metrics at different k (1 to 10 + 20,30,40,50)"""
+    #print(df.columns)
+    klist = list(range(1, 11))
+    klist.extend([20, 30, 40, 50, 100, 200, 300, 500])
+    print(klist)
+    # 14 x 3 x 4 columns added for each
+    for k in tqdm(klist):
+        df['average_precision_hybrid_{}'.format(k)] = df['hybrid_binary'].progress_apply(lambda x: average_precision(x, k))
+        df['recall_hybrid_{}'.format(k)] = df[['hybrid_binary', 'ground_truth']].apply(
+            lambda x: recall_at_k(x.hybrid_binary, x.ground_truth, k), axis=1)
+        df['reciprocal_rank_hybrid_{}'.format(k)] = df['hybrid_binary'].progress_apply(lambda x: reciprocal_rank(x, k))
+        df['ndcg_hybrid_{}'.format(k)] = df['hybrid_binary'].progress_apply(lambda x: ndcg(x, k))
+    df.to_pickle('/home/ashwath/Programs/MAGCS/Pickles/paperwisemetrics_mag_hybrid5050_df_may26.pickle')
+    print("METRICS CALCULATED, time to calculate the means")
+    # Get the mean of all the index columns
+    # First, drop list columns.
+    df = df.drop(['hybrid_recommendations', 'hybrid_binary', 'ground_truth'], axis=1)
+    mean_series = df.mean()
+    mean_series.to_csv('/home/ashwath/Programs/MAGCS/Evaluation/meanmetrics_mag_may26_hybrid5050.tsv', sep='\t', index=True, header=False)
+    print("C'est fini.")
+
+
+calculate_hybrid_metrics(df[['hybrid_recommendations', 'hybrid_binary', 'ground_truth']])
+
+
+# OLD version: my manual combination
+def combine_recommendations(hd2v_recommendations, bm25_recommendations):
+    """ Combine recommendations (50:50)"""
+
+    final_recommendations = defaultdict(list)
+    # If found in both, it is better
+    # higher pos in both, even  better
+    # score (lower is better): bm25pos + hd2vpos / len()^2 -> len: 2 if both found : 1,1: 2. 2: 2 In top 10 in both: -3
+    # 1 and 7: 1+7/4 = 2. 1 and 5: 1+5/4, only 6:  6/1, 6 and 400: 6+400/4
+    # 5 and 19: 5+19/4 = 6. Equal to only 1 6. 
+    for i in range(500):
+        final_recommendations[hd2v_recommendations[i]].append(i)
+        final_recommendations[bm25_recommendations[i]].append(i)
+
+    for k in final_recommendations.keys():
+        k[v] = sum(k[v])/(len(k[v])**2)
+
+    # Order the ranks
+
+query = """
+select paperid, paperreferenceid, 
+(SELECT englishfields.paperid, englishfields.papertitle, abstracts.abstract FROM 
+(
+    SELECT titlefields.paperid, titlefields.papertitle FROM 
+    (
+        SELECT papers.paperid, papertitle FROM papers
+        INNER JOIN 
+        (
+            SELECT paperid FROM paperfieldsofstudy WHERE fieldofstudyid=41008148
+        ) AS paperfields 
+        ON paperfields.paperid=papers.paperid where publishedyear not in (2018,2019)) AS titlefields 
+    INNER JOIN 
+    (
+        SELECT paperid FROM paperlanguages WHERE languagecode='en'
+    ) AS languages   
+    ON titlefields.paperid=languages.paperid) AS englishfields
+ INNER JOIN (select paperid, abstract FROM paperabstracts) AS abstracts
+ ON abstracts.paperid=englishfields.paperid ) as nocontexts inner join
+ (SELECT paperreferenceid, string_agg(citationcontext, ' ||--|| ') AS contexts 
+  FROM papercitationcontexts GROUP BY paperreferenceid) as refcontexts
+  on nocontexts.paperid=refcontexts.paperreferenceid limit 5;
+"""
+
+magonly_query = """
+SELECT titleandabstract.paperid, papertitle, abstract, contexts
+FROM  
+    (
+        SELECT papers.paperid, papertitle, abstract FROM papers INNER JOIN paperabstracts 
+        ON papers.paperid=paperabstracts.paperid
+        WHERE papers.paperid=%s) AS titleandabstract INNER JOIN 
+        (
+            SELECT paperreferenceid,
+            string_agg(citationcontext, ' ||--|| ') AS contexts 
+            FROM papercitationcontexts 
+            WHERE paperreferenceid=%s 
+            GROUP BY paperreferenceid
+        ) AS listofcontexts
+        ON titleandabstract.paperid=listofcontexts.paperreferenceid;"""
+
+
+FINAL SYSTEM:
+Create files:
+/home/ashwath/Programs/MAGCS/AllYearsFiles
+mag cs all:  done: mag_cs_allyears.txt
+mag cs 50 all: done: mag_cs_50_allyears.txt
+mag cs cited all: done: mag_cs_cited_allyears.txt
+mag cs cited 50 all: mag_cs_50_cited_allyears.txt
+
+Hyperdoc2vec: 
+mag cs all: running on hd2v: /home/ashwath/Programs/MAGCS/AllYearsFiles/models/magcsenglish_window20_all.model
+mag cs 50 all: running on endh: /home/ashwath/Programs/MAGCS/AllYearsFiles/models/magcsenglish_window20_mincitations50_all.model
+
+BM25 Solr indexing:
+mag cs all: done
+mag cs 50 all: done
+mag cs cited all: running on monjaeg
+mag cs cited 50 all: running on fulltext
+
+
+
+

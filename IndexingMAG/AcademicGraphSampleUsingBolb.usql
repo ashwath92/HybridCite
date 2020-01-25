@@ -1,0 +1,75 @@
+//
+// This U-SQL script demonstrates loading data provided in this dataset and finding top authors of an affiliation.
+// U-SQL script could be run in Azure Data Lake Analytic service.
+//
+// To do:
+//   1. Run CreateFunctions.usql to define functions before running this script
+//   2. Replace ##YourBlobAccount## with your blob account
+//
+
+DECLARE @dataVersion string = "mag-2018-11-09";
+DECLARE @blobAccount string = "##YourBlobAccount##";
+DECLARE @uriPrefix   string = "wasb://" + @dataVersion + "@" + @blobAccount + "/";
+DECLARE @affiliationId long = 201448701; // Affiliation Id for University of Washington
+DECLARE @OutAffiliationTopAuthors string = "/output/UWTopAuthors.tsv";
+
+//
+// Load Academic Graph data
+//
+
+@authors = Authors(@uriPrefix);
+
+@papers = Papers(@uriPrefix);
+
+@paperAuthorAffiliations = PaperAuthorAffiliations(@uriPrefix);
+
+//
+// Find top authors of an affiliation
+// 
+
+@affiliationPapers =
+    SELECT 
+        PaperId,
+        AuthorId
+    FROM @paperAuthorAffiliations
+    WHERE AffiliationId == @affiliationId;
+
+@affiliationAuthorPapers =
+    SELECT
+        A.AuthorId,
+        P.EstimatedCitation
+    FROM @affiliationPapers AS A
+    INNER JOIN @papers AS P
+        ON A.PaperId == P.PaperId;
+
+@affiliationAuthorCitations =
+    SELECT
+        AuthorId,
+        COUNT(*) AS PaperCount,
+        SUM(EstimatedCitation) AS EccSum
+    FROM @affiliationAuthorPapers 
+    GROUP BY AuthorId;
+
+@affiliationAuthorsWithRank =
+    SELECT
+        AuthorId,
+        PaperCount,
+        EccSum,
+        ROW_NUMBER() OVER (ORDER BY EccSum DESC) AS Rank
+    FROM @affiliationAuthorCitations;
+    
+@affiliationTopAuthors =
+    SELECT 
+        A.AuthorId,
+        B.DisplayName AS AuthorName,
+        A.PaperCount,
+        A.EccSum,
+        A.Rank
+    FROM @affiliationAuthorsWithRank AS A
+    INNER JOIN @authors AS B
+        ON A.AuthorId == B.AuthorId;
+
+OUTPUT @affiliationTopAuthors
+TO @OutAffiliationTopAuthors
+ORDER BY Rank ASC
+USING Outputters.Tsv(quoting : false);

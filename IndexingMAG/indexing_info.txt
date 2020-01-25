@@ -1,0 +1,16 @@
+Indexing MAG: 
+
+THE ISSUE WITH PYSOLR WAS THAT THEY HAVE made automatic commits False OFF by default.  IT has to be committed with always_commit=True in the pysolr.Solr function.
+solr = pysolr.Solr('http://localhost:8983/solr/core_0/', search_handler='/autocomplete', always_commit=True)
+
+1. Affiliations: problem with pysolr, it doesn't insert any records. 
+    Used bin/post: bin/post -c mag_affiliations -params "fieldnames=affiliation_id,rank,normalized_name,display_name,grid_id,homepage,wikipedia_url,paper_count,citation_count,created_date&separator=%09" -type text/csv /vol1/mag/data/2018-07-19/dumps/Affiliations.txt
+
+2. Authors: same problem
+   bin/post: bin/post -c mag_authors -params "fieldnames=author_id,rank,normalized_name,display_name,last_known_affiliation_id,paper_count,citation_count,created_date&separator=%09" -type text/csv /vol1/mag/data/2018-07-19/dumps/Authors.txt
+
+3. All others indexed with Pysolr.
+
+
+
+bin/post -c mag_paper_citation_contexts -params "fieldnames=paper_id,paper_reference_id,citation_context&separator=%09" -type text/csv /vol1/mag/data/2018-07-19/dumps/PaperCitationContexts.txt

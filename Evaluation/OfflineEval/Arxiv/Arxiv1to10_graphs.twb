@@ -1,0 +1,1160 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20191.19.0417.1429                               -->
+<workbook original-version='18.1' source-build='2019.1.3 (20191.19.0417.1429)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='map (arxiv_metrics_1to10)' inline='true' name='federated.16692ya0f82axj1ad08vo1jpy4go' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='arxiv_metrics_1to10' name='excel-direct.0udnenh165a6m31e8l80r00zv0m1'>
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='D:/Coursework/Thesis/OfflineEval/Arxiv/arxiv_metrics_1to10.xlsx' interpretationMode='0' password='' server='' validate='no' />
+          </named-connection>
+        </named-connections>
+        <relation join='inner' type='join'>
+          <clause type='join'>
+            <expression op='='>
+              <expression op='[map].[k]' />
+              <expression op='[recall].[k]' />
+            </expression>
+          </clause>
+          <relation join='inner' type='join'>
+            <clause type='join'>
+              <expression op='='>
+                <expression op='[map].[k]' />
+                <expression op='[ndcg].[k]' />
+              </expression>
+            </clause>
+            <relation join='inner' type='join'>
+              <clause type='join'>
+                <expression op='='>
+                  <expression op='[map].[k]' />
+                  <expression op='[mrr].[k]' />
+                </expression>
+              </clause>
+              <relation connection='excel-direct.0udnenh165a6m31e8l80r00zv0m1' name='map' table='[map$]' type='table'>
+                <columns gridOrigin='A1:G11:no:A1:G11:0' header='yes' outcome='2'>
+                  <column datatype='integer' name='k' ordinal='0' />
+                  <column datatype='real' name='hd2v_2vec' ordinal='1' />
+                  <column datatype='real' name='lda' ordinal='2' />
+                  <column datatype='real' name='bm25' ordinal='3' />
+                  <column datatype='real' name='hd2v_1vec' ordinal='4' />
+                  <column datatype='real' name='paper2vec' ordinal='5' />
+                  <column datatype='real' name='doc2vec' ordinal='6' />
+                </columns>
+              </relation>
+              <relation connection='excel-direct.0udnenh165a6m31e8l80r00zv0m1' name='mrr' table='[mrr$]' type='table'>
+                <columns gridOrigin='A1:G11:no:A1:G11:0' header='yes' outcome='2'>
+                  <column datatype='integer' name='k' ordinal='0' />
+                  <column datatype='real' name='hd2v_2vec' ordinal='1' />
+                  <column datatype='string' name='lda' ordinal='2' />
+                  <column datatype='string' name='bm25' ordinal='3' />
+                  <column datatype='string' name='hd2v_1vec' ordinal='4' />
+                  <column datatype='string' name='paper2vec' ordinal='5' />
+                  <column datatype='string' name='doc2vec' ordinal='6' />
+                </columns>
+              </relation>
+            </relation>
+            <relation connection='excel-direct.0udnenh165a6m31e8l80r00zv0m1' name='ndcg' table='[ndcg$]' type='table'>
+              <columns gridOrigin='A1:G11:no:A1:G11:0' header='yes' outcome='2'>
+                <column datatype='integer' name='k' ordinal='0' />
+                <column datatype='string' name='hd2v_2vec' ordinal='1' />
+                <column datatype='string' name='lda' ordinal='2' />
+                <column datatype='string' name='bm25' ordinal='3' />
+                <column datatype='string' name='hd2v_1vec' ordinal='4' />
+                <column datatype='string' name='paper2vec' ordinal='5' />
+                <column datatype='string' name='doc2vec' ordinal='6' />
+              </columns>
+            </relation>
+          </relation>
+          <relation connection='excel-direct.0udnenh165a6m31e8l80r00zv0m1' name='recall' table='[recall$]' type='table'>
+            <columns gridOrigin='A1:G11:no:A1:G11:0' header='yes' outcome='2'>
+              <column datatype='integer' name='k' ordinal='0' />
+              <column datatype='string' name='hd2v_2vec' ordinal='1' />
+              <column datatype='string' name='lda' ordinal='2' />
+              <column datatype='string' name='bm25' ordinal='3' />
+              <column datatype='string' name='hd2v_1vec' ordinal='4' />
+              <column datatype='string' name='paper2vec' ordinal='5' />
+              <column datatype='string' name='doc2vec' ordinal='6' />
+            </columns>
+          </relation>
+        </relation>
+        <cols>
+          <map key='[bm25 (mrr)]' value='[mrr].[bm25]' />
+          <map key='[bm25 (ndcg)]' value='[ndcg].[bm25]' />
+          <map key='[bm25 (recall)]' value='[recall].[bm25]' />
+          <map key='[bm25]' value='[map].[bm25]' />
+          <map key='[doc2vec (mrr)]' value='[mrr].[doc2vec]' />
+          <map key='[doc2vec (ndcg)]' value='[ndcg].[doc2vec]' />
+          <map key='[doc2vec (recall)]' value='[recall].[doc2vec]' />
+          <map key='[doc2vec]' value='[map].[doc2vec]' />
+          <map key='[hd2v_1vec (mrr)]' value='[mrr].[hd2v_1vec]' />
+          <map key='[hd2v_1vec (ndcg)]' value='[ndcg].[hd2v_1vec]' />
+          <map key='[hd2v_1vec (recall)]' value='[recall].[hd2v_1vec]' />
+          <map key='[hd2v_1vec]' value='[map].[hd2v_1vec]' />
+          <map key='[hd2v_2vec (mrr)]' value='[mrr].[hd2v_2vec]' />
+          <map key='[hd2v_2vec (ndcg)]' value='[ndcg].[hd2v_2vec]' />
+          <map key='[hd2v_2vec (recall)]' value='[recall].[hd2v_2vec]' />
+          <map key='[hd2v_2vec]' value='[map].[hd2v_2vec]' />
+          <map key='[k (mrr)]' value='[mrr].[k]' />
+          <map key='[k (ndcg)]' value='[ndcg].[k]' />
+          <map key='[k (recall)]' value='[recall].[k]' />
+          <map key='[k]' value='[map].[k]' />
+          <map key='[lda (mrr)]' value='[mrr].[lda]' />
+          <map key='[lda (ndcg)]' value='[ndcg].[lda]' />
+          <map key='[lda (recall)]' value='[recall].[lda]' />
+          <map key='[lda]' value='[map].[lda]' />
+          <map key='[paper2vec (mrr)]' value='[mrr].[paper2vec]' />
+          <map key='[paper2vec (ndcg)]' value='[ndcg].[paper2vec]' />
+          <map key='[paper2vec (recall)]' value='[recall].[paper2vec]' />
+          <map key='[paper2vec]' value='[map].[paper2vec]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>k</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[k]</local-name>
+            <parent-name>[map]</parent-name>
+            <remote-alias>k</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hd2v_2vec</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[hd2v_2vec]</local-name>
+            <parent-name>[map]</parent-name>
+            <remote-alias>hd2v_2vec</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lda</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[lda]</local-name>
+            <parent-name>[map]</parent-name>
+            <remote-alias>lda</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bm25</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[bm25]</local-name>
+            <parent-name>[map]</parent-name>
+            <remote-alias>bm25</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hd2v_1vec</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[hd2v_1vec]</local-name>
+            <parent-name>[map]</parent-name>
+            <remote-alias>hd2v_1vec</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>paper2vec</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[paper2vec]</local-name>
+            <parent-name>[map]</parent-name>
+            <remote-alias>paper2vec</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>doc2vec</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[doc2vec]</local-name>
+            <parent-name>[map]</parent-name>
+            <remote-alias>doc2vec</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[map]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>1</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:G11:no:A1:G11:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>2</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>k</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[k (mrr)]</local-name>
+            <parent-name>[mrr]</parent-name>
+            <remote-alias>k</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hd2v_2vec</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[hd2v_2vec (mrr)]</local-name>
+            <parent-name>[mrr]</parent-name>
+            <remote-alias>hd2v_2vec</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lda</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[lda (mrr)]</local-name>
+            <parent-name>[mrr]</parent-name>
+            <remote-alias>lda</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bm25</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[bm25 (mrr)]</local-name>
+            <parent-name>[mrr]</parent-name>
+            <remote-alias>bm25</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hd2v_1vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[hd2v_1vec (mrr)]</local-name>
+            <parent-name>[mrr]</parent-name>
+            <remote-alias>hd2v_1vec</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>paper2vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[paper2vec (mrr)]</local-name>
+            <parent-name>[mrr]</parent-name>
+            <remote-alias>paper2vec</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>doc2vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[doc2vec (mrr)]</local-name>
+            <parent-name>[mrr]</parent-name>
+            <remote-alias>doc2vec</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[mrr]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>1</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:G11:no:A1:G11:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>2</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>k</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[k (ndcg)]</local-name>
+            <parent-name>[ndcg]</parent-name>
+            <remote-alias>k</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hd2v_2vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[hd2v_2vec (ndcg)]</local-name>
+            <parent-name>[ndcg]</parent-name>
+            <remote-alias>hd2v_2vec</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lda</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[lda (ndcg)]</local-name>
+            <parent-name>[ndcg]</parent-name>
+            <remote-alias>lda</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bm25</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[bm25 (ndcg)]</local-name>
+            <parent-name>[ndcg]</parent-name>
+            <remote-alias>bm25</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hd2v_1vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[hd2v_1vec (ndcg)]</local-name>
+            <parent-name>[ndcg]</parent-name>
+            <remote-alias>hd2v_1vec</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>paper2vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[paper2vec (ndcg)]</local-name>
+            <parent-name>[ndcg]</parent-name>
+            <remote-alias>paper2vec</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>doc2vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[doc2vec (ndcg)]</local-name>
+            <parent-name>[ndcg]</parent-name>
+            <remote-alias>doc2vec</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[ndcg]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>0</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:G11:no:A1:G11:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>2</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>k</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[k (recall)]</local-name>
+            <parent-name>[recall]</parent-name>
+            <remote-alias>k</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hd2v_2vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[hd2v_2vec (recall)]</local-name>
+            <parent-name>[recall]</parent-name>
+            <remote-alias>hd2v_2vec</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>lda</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[lda (recall)]</local-name>
+            <parent-name>[recall]</parent-name>
+            <remote-alias>lda</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>bm25</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[bm25 (recall)]</local-name>
+            <parent-name>[recall]</parent-name>
+            <remote-alias>bm25</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>hd2v_1vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[hd2v_1vec (recall)]</local-name>
+            <parent-name>[recall]</parent-name>
+            <remote-alias>hd2v_1vec</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>paper2vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[paper2vec (recall)]</local-name>
+            <parent-name>[recall]</parent-name>
+            <remote-alias>paper2vec</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>doc2vec</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[doc2vec (recall)]</local-name>
+            <parent-name>[recall]</parent-name>
+            <remote-alias>doc2vec</remote-alias>
+            <ordinal>27</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RIN_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[recall]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>0</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:G11:no:A1:G11:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>2</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Bm25 (Mrr)' datatype='string' name='[bm25 (mrr)]' role='dimension' type='nominal' />
+      <column caption='Bm25 (Ndcg)' datatype='string' name='[bm25 (ndcg)]' role='dimension' type='nominal' />
+      <column caption='Bm25 (Recall)' datatype='string' name='[bm25 (recall)]' role='dimension' type='nominal' />
+      <column caption='Bm25' datatype='real' name='[bm25]' role='dimension' type='ordinal' />
+      <column caption='Doc2Vec (Mrr)' datatype='string' name='[doc2vec (mrr)]' role='dimension' type='nominal' />
+      <column caption='Doc2Vec (Ndcg)' datatype='string' name='[doc2vec (ndcg)]' role='dimension' type='nominal' />
+      <column caption='Doc2Vec (Recall)' datatype='string' name='[doc2vec (recall)]' role='dimension' type='nominal' />
+      <column caption='Doc2Vec' datatype='real' name='[doc2vec]' role='dimension' type='ordinal' />
+      <column caption='Hd2V 1Vec (Mrr)' datatype='string' name='[hd2v_1vec (mrr)]' role='dimension' type='nominal' />
+      <column caption='Hd2V 1Vec (Ndcg)' datatype='string' name='[hd2v_1vec (ndcg)]' role='dimension' type='nominal' />
+      <column caption='Hd2V 1Vec (Recall)' datatype='string' name='[hd2v_1vec (recall)]' role='dimension' type='nominal' />
+      <column caption='Hd2V 1Vec' datatype='real' name='[hd2v_1vec]' role='dimension' type='ordinal' />
+      <column caption='Hd2V 2Vec (Mrr)' datatype='real' name='[hd2v_2vec (mrr)]' role='dimension' type='ordinal' />
+      <column caption='Hd2V 2Vec (Ndcg)' datatype='string' name='[hd2v_2vec (ndcg)]' role='dimension' type='nominal' />
+      <column caption='Hd2V 2Vec (Recall)' datatype='string' name='[hd2v_2vec (recall)]' role='dimension' type='nominal' />
+      <column caption='Hd2V 2Vec' datatype='real' name='[hd2v_2vec]' role='dimension' type='ordinal' />
+      <column caption='K (Mrr)' datatype='integer' name='[k (mrr)]' role='measure' type='quantitative' />
+      <column caption='K (Ndcg)' datatype='integer' name='[k (ndcg)]' role='measure' type='quantitative' />
+      <column caption='K (Recall)' datatype='integer' name='[k (recall)]' role='measure' type='quantitative' />
+      <column caption='K' datatype='integer' name='[k]' role='dimension' type='ordinal' />
+      <column caption='Lda (Mrr)' datatype='string' name='[lda (mrr)]' role='dimension' type='nominal' />
+      <column caption='Lda (Ndcg)' datatype='string' name='[lda (ndcg)]' role='dimension' type='nominal' />
+      <column caption='Lda (Recall)' datatype='string' name='[lda (recall)]' role='dimension' type='nominal' />
+      <column caption='Lda' datatype='real' name='[lda]' role='dimension' type='ordinal' />
+      <column caption='Paper2Vec (Mrr)' datatype='string' name='[paper2vec (mrr)]' role='dimension' type='nominal' />
+      <column caption='Paper2Vec (Ndcg)' datatype='string' name='[paper2vec (ndcg)]' role='dimension' type='nominal' />
+      <column caption='Paper2Vec (Recall)' datatype='string' name='[paper2vec (recall)]' role='dimension' type='nominal' />
+      <column caption='Paper2Vec' datatype='real' name='[paper2vec]' role='dimension' type='ordinal' />
+      <extract count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' authentication='auth-none' author-locale='en_US' class='hyper' dbname='D:/Coursework/Thesis/OfflineEval/Arxiv/arxiv1to10metrics_extract.hyper' default-settings='yes' schema='Extract' sslmode='' tablename='Extract' update-time='05/23/2019 05:25:38 PM' username='tableau_internal_user'>
+          <relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <cols>
+            <map key='[bm25 (mrr)]' value='[Extract].[bm25]' />
+            <map key='[bm25 (ndcg)]' value='[Extract].[bm251]' />
+            <map key='[bm25 (recall)]' value='[Extract].[bm252]' />
+            <map key='[bm25]' value='[Extract].[bm253]' />
+            <map key='[doc2vec (mrr)]' value='[Extract].[doc2vec]' />
+            <map key='[doc2vec (ndcg)]' value='[Extract].[doc2vec1]' />
+            <map key='[doc2vec (recall)]' value='[Extract].[doc2vec2]' />
+            <map key='[doc2vec]' value='[Extract].[doc2vec3]' />
+            <map key='[hd2v_1vec (mrr)]' value='[Extract].[hd2v_1vec]' />
+            <map key='[hd2v_1vec (ndcg)]' value='[Extract].[hd2v_1vec1]' />
+            <map key='[hd2v_1vec (recall)]' value='[Extract].[hd2v_1vec2]' />
+            <map key='[hd2v_1vec]' value='[Extract].[hd2v_1vec3]' />
+            <map key='[hd2v_2vec (mrr)]' value='[Extract].[hd2v_2vec]' />
+            <map key='[hd2v_2vec (ndcg)]' value='[Extract].[hd2v_2vec1]' />
+            <map key='[hd2v_2vec (recall)]' value='[Extract].[hd2v_2vec2]' />
+            <map key='[hd2v_2vec]' value='[Extract].[hd2v_2vec3]' />
+            <map key='[k (mrr)]' value='[Extract].[k]' />
+            <map key='[k (ndcg)]' value='[Extract].[k1]' />
+            <map key='[k (recall)]' value='[Extract].[k2]' />
+            <map key='[k]' value='[Extract].[k3]' />
+            <map key='[lda (mrr)]' value='[Extract].[lda]' />
+            <map key='[lda (ndcg)]' value='[Extract].[lda1]' />
+            <map key='[lda (recall)]' value='[Extract].[lda2]' />
+            <map key='[lda]' value='[Extract].[lda3]' />
+            <map key='[paper2vec (mrr)]' value='[Extract].[paper2vec]' />
+            <map key='[paper2vec (ndcg)]' value='[Extract].[paper2vec1]' />
+            <map key='[paper2vec (recall)]' value='[Extract].[paper2vec2]' />
+            <map key='[paper2vec]' value='[Extract].[paper2vec3]' />
+          </cols>
+          <refresh>
+            <refresh-event add-from-file-path='map (arxiv_metrics_1to10)' increment-value='%null%' refresh-type='create' rows-inserted='10' timestamp-start='2019-05-23 17:25:38.159' />
+          </refresh>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>k3</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[k]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>k3</remote-alias>
+              <ordinal>0</ordinal>
+              <family>map</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hd2v_2vec3</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[hd2v_2vec]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hd2v_2vec3</remote-alias>
+              <ordinal>1</ordinal>
+              <family>map</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lda3</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[lda]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lda3</remote-alias>
+              <ordinal>2</ordinal>
+              <family>map</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>bm253</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[bm25]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>bm253</remote-alias>
+              <ordinal>3</ordinal>
+              <family>map</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hd2v_1vec3</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[hd2v_1vec]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hd2v_1vec3</remote-alias>
+              <ordinal>4</ordinal>
+              <family>map</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>paper2vec3</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[paper2vec]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>paper2vec3</remote-alias>
+              <ordinal>5</ordinal>
+              <family>map</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>doc2vec3</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[doc2vec]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>doc2vec3</remote-alias>
+              <ordinal>6</ordinal>
+              <family>map</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>k</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[k (mrr)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>k</remote-alias>
+              <ordinal>7</ordinal>
+              <family>mrr</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hd2v_2vec</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[hd2v_2vec (mrr)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hd2v_2vec</remote-alias>
+              <ordinal>8</ordinal>
+              <family>mrr</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lda</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[lda (mrr)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lda</remote-alias>
+              <ordinal>9</ordinal>
+              <family>mrr</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>bm25</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[bm25 (mrr)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>bm25</remote-alias>
+              <ordinal>10</ordinal>
+              <family>mrr</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hd2v_1vec</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[hd2v_1vec (mrr)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hd2v_1vec</remote-alias>
+              <ordinal>11</ordinal>
+              <family>mrr</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>paper2vec</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[paper2vec (mrr)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>paper2vec</remote-alias>
+              <ordinal>12</ordinal>
+              <family>mrr</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>doc2vec</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[doc2vec (mrr)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>doc2vec</remote-alias>
+              <ordinal>13</ordinal>
+              <family>mrr</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>k1</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[k (ndcg)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>k1</remote-alias>
+              <ordinal>14</ordinal>
+              <family>ndcg</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hd2v_2vec1</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[hd2v_2vec (ndcg)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hd2v_2vec1</remote-alias>
+              <ordinal>15</ordinal>
+              <family>ndcg</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lda1</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[lda (ndcg)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lda1</remote-alias>
+              <ordinal>16</ordinal>
+              <family>ndcg</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>bm251</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[bm25 (ndcg)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>bm251</remote-alias>
+              <ordinal>17</ordinal>
+              <family>ndcg</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hd2v_1vec1</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[hd2v_1vec (ndcg)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hd2v_1vec1</remote-alias>
+              <ordinal>18</ordinal>
+              <family>ndcg</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>paper2vec1</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[paper2vec (ndcg)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>paper2vec1</remote-alias>
+              <ordinal>19</ordinal>
+              <family>ndcg</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>doc2vec1</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[doc2vec (ndcg)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>doc2vec1</remote-alias>
+              <ordinal>20</ordinal>
+              <family>ndcg</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>k2</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[k (recall)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>k2</remote-alias>
+              <ordinal>21</ordinal>
+              <family>recall</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hd2v_2vec2</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[hd2v_2vec (recall)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hd2v_2vec2</remote-alias>
+              <ordinal>22</ordinal>
+              <family>recall</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>lda2</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[lda (recall)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>lda2</remote-alias>
+              <ordinal>23</ordinal>
+              <family>recall</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>bm252</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[bm25 (recall)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>bm252</remote-alias>
+              <ordinal>24</ordinal>
+              <family>recall</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>hd2v_1vec2</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[hd2v_1vec (recall)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>hd2v_1vec2</remote-alias>
+              <ordinal>25</ordinal>
+              <family>recall</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>paper2vec2</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[paper2vec (recall)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>paper2vec2</remote-alias>
+              <ordinal>26</ordinal>
+              <family>recall</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>10</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>doc2vec2</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[doc2vec (recall)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>doc2vec2</remote-alias>
+              <ordinal>27</ordinal>
+              <family>recall</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='1' name='LEN_RIN_S2' />
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout dim-ordering='alphabetic' dim-percentage='0.869295' measure-ordering='alphabetic' measure-percentage='0.130705' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;Germany&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='map (arxiv_metrics_1to10)' name='federated.16692ya0f82axj1ad08vo1jpy4go' />
+          </datasources>
+          <datasource-dependencies datasource='federated.16692ya0f82axj1ad08vo1jpy4go'>
+            <column caption='Doc2Vec (Mrr)' datatype='string' name='[doc2vec (mrr)]' role='dimension' type='nominal' />
+            <column caption='K' datatype='integer' name='[k]' role='dimension' type='ordinal' />
+            <column-instance column='[doc2vec (mrr)]' derivation='None' name='[none:doc2vec (mrr):nk]' pivot='key' type='nominal' />
+            <column-instance column='[k]' derivation='Sum' name='[sum:k:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Line' />
+            <encodings>
+              <color column='[federated.16692ya0f82axj1ad08vo1jpy4go].[none:doc2vec (mrr):nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols>[federated.16692ya0f82axj1ad08vo1jpy4go].[sum:k:qk]</cols>
+      </table>
+      <simple-id uuid='{B511DDD5-FBC1-498A-921F-3A18E46CE549}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.16692ya0f82axj1ad08vo1jpy4go].[none:doc2vec (mrr):nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.16692ya0f82axj1ad08vo1jpy4go].[none:doc2vec (mrr):nk]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{D22A104F-13B9-4681-8F81-01F3ABE3929F}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='79' name='Sheet 1' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAABPCAYAAAC9OsoKAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAAFlElEQVR4nO3cf0yUdRwH8Pf5hB64c8BOBqIFDjJMa02zUVe6VSpzKstmDcci/4F0utUf
+      uZyxcNPW+quRGk6z6UhbY4PwJ5PEgbr5Y/ijPBVTlAJUPLQT7rrj/PbHGUKLu+cSfJ7j835t
+      jO157tm9b/d98/0+9zyHRSmlQCTUCKMDEBmJBSDRWAASjQUg0VgAEo0FINFYABItbAG6u7sf
+      R45B5Xa7jY4QkWjLCwyfzJwBSDQWgERjAUg0FoBEYwFINBaARGMBSDQWgER7wugA0aKy4QJ2
+      HvwFXl8PLAh+h8gCAFD9f1sQej8G2v9g+6Mcb1H99g/02AH3W/7rOUJk1XW8vtcQzD/w8+rK
+      YtH3XH1/cwYg0SzhvhLZ3d2NuLi4x5VnULjdbthsNqNj6BZteYHhk5kzAInGApBoLACJxgKQ
+      aCwAicYCkGgsAImm6zoA0XCl61aIaLsQFm0X76ItLzB8MnMJRKKxACQaC0CisQAkWthPgYiG
+      M84AJBoLQKKxACQaC0CisQAkWgT/FaILl6s24esDTfBodjy3aDmKZo2DNnTZIuO/iRO7tuKH
+      481w+0bCNukNFBUuRMZoo4OF046a9WtR0TMfJcU5SDY6Thhdl/fhu217cbbDh5G2NMxd+Qnm
+      PWl0qhD8LajdvBnVv96EB7GYkJ2PorxpsP8zcJVOnsYt6tMN9eqGT6meuxdVxbpiVXlN79FD
+      7+z2z9S2+t+Uy6eU6vGo1rpStbrcaXSssO4dLVXrqqtVWcle1WZ0mHBuH1JffrxB1bd6VI9S
+      ynevRd1wGR0qNGf5alVa16o8PUopn0udr1inivsMXJ1LIC8aGzow810HkmIAbczTWJibiTMn
+      rw5ZcSM1OW8NChwTkRADQLMixZGNpzxeo2OF1nUK5UfSUJAz3jwzaQjX6w8h7q2lcKRYoQGI
+      GT0eSQlGpwrlFq43T4RjZgqsGoCYBGTNfxMpHa7eR+gswB3cQSYmJj7cok3KQnKHC4HBTfy/
+      aVrfIdSFy1VHEDvjGcPyhBfAhaqDsC/KwbhoGP24iytNqXhputXoIBEYi+kvu3FgdzO8AQD+
+      Tjirj2F0n3Gh8xzAh79GxCK27yZNg9behluAqdatgT8vYfeW3cCCQuRnmPfNClytwn7rYqxI
+      j4rRD8ADT4wHv2/7HDvPNMPt0xA7IRv5RXmYZjfva0ictRxLar7CqmVN8CIeU/JWoGjqw3Gh
+      swAjMeq+B56+mwIBBJKTMHZQ4z4af8s+bP4JmFP4kclPfttRU+XF3BXpUbH0eWgU0ucuxdvv
+      22DV/Oh0VqJ0ax3SV72OxPAHGyCA1n2bsMe2BF9sTIH1fiecB3dgU81irJwd/LOtswDxiEcT
+      rriA9AevNHDRiXb7K+Z5A111+LY2CflF0zDGNKEGcG4/qp3HEFh2uN/m44UnkFtSjBwzTam9
+      kpE+1o8/4mzB9TRikJD1Kl78cQ+uAyYtwHnUNGZi4eoUWAFAS0BWzms4urYR7bODn7jpPAew
+      4gWHHYd3NeCmP7jMqKpswvPT04cwfGQu7D+HjAVRMPgBYGoBNpaVoaz35wPMSM1FSZlZB39Q
+      ZnYqTm6vRXNwQY1OZz0a7VNg3jOtVKTFHcfPp28HzwECXrQ1HMUleyLiHzwigrtB+18HmJH3
+      IQqy7SaZAW6hZv0aVFz71+bU3Kj4bB04ja1r2zDP9FkD6Dj1Pb7ZcQwtHg22NAeWrnwHk828
+      3Ow6j8qyctRe7IBPi0XSs3PwXkFO7xKZt0OTaLwVgkRjAUg0FoBEYwFINBaARGMBSDQWgERj
+      AUg0FoBEYwFINBaARGMBSDQWgERjAUg0FoBEYwFINBaARGMBSDQWgERjAUg0FoBEYwFINBaA
+      RGMBSDQWgERjAUg0FoBEYwFINBaARGMBSLS/AbtbefaWA7nWAAAAAElFTkSuQmCC
+    </thumbnail>
+  </thumbnails>
+</workbook>
