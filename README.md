@@ -1,4 +1,4 @@
-# hybridcite2020
+# HybridCite
 *Hybrid Cite Hybrid Citation Recommender Code*
 
 There are separate sections (directories) of code present in this repository for each of the algorithms:
