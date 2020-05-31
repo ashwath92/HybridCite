@@ -8,7 +8,7 @@ There are separate sections (directories) of code present in this repository for
 4. Paper2vec: Programs to create Doc2vec and Paper2vec models
 
 The process to create the training and test files are in the CreateTrainingFiles and CreateTestFiles directories respectively.
-The online and offline evaluation programs are present under the Evaluation directory. The offline evaluation is present as a Flask app.
+The online and offline evaluation programs are present under the Evaluation directory along with the resulting data and graphs. The offline evaluation is divided into sub-folders corresponding to each of the data sets. These sub-folders contain the programs, generated data and Tableau workbooks corresponding to the data set. The online evaluation is present as a Flask app.
 
 The running recommender system can be set up by running the code under the HybridCite directory: this is a Flask app too.
 
