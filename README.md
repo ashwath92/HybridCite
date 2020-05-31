@@ -25,7 +25,6 @@ The data sets created can be downloaded from the following links:
 
 ## Citing
 Please cite our work as follows:
-```
-Michael Färber, Ashwath Sampath. "HybridCite: A Hybrid Model for Context-Aware Citation Recommendation". Proceedings of the 20th ACM/IEEE Joint Conference on Digital Libraries (JCDL'20), Xi'an, China, 2020.
-```
+> Michael Färber, Ashwath Sampath. "HybridCite: A Hybrid Model for Context-Aware Citation Recommendation". Proceedings of the 20th ACM/IEEE Joint Conference on Digital Libraries (JCDL'20), Xi'an, China, 2020.
+
 Our paper is available online at https://arxiv.org/pdf/2002.06406.pdf.
