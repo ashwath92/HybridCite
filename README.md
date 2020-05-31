@@ -22,3 +22,10 @@ The data sets created can be downloaded from the following links:
 * [MAG50 training data](http:/people.aifb.kit.edu/mfa/hybridcite2020/MAG/Training/mag_training_data_50citationsmin.txt.gz)
 * [MAG-Cited training data](http:/people.aifb.kit.edu/mfa/hybridcite2020/MAG/Training/mag_training_data_cited_contexts.txt.gz)
 * [MAG-unpaywall-training](http:/people.aifb.kit.edu/mfa/hybridcite2020/UnpaywallMAG/Training/training_no201829109.txt.gz)
+
+## Citing
+Please cite our work as follows:
+```
+Michael Färber, Ashwath Sampath. "HybridCite: A Hybrid Model for Context-Aware Citation Recommendation". Proceedings of the 20th ACM/IEEE Joint Conference on Digital Libraries (JCDL'20), Xi'an, China, 2020.
+```
+Our paper is available online at https://arxiv.org/pdf/2002.06406.pdf.
